@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tu Nombre — Diseño Gráfico, Ilustración & Web</title>
+<meta name="description" content="Portafolio de diseño gráfico, ilustración y diseño web.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ===== VARIABLES ===== */
+:root{
+  --bg:#0b1124;
+  --text:#b397e2;
+  --muted:#8f80bd;
+  --accent:#d7bfff;
+  --accent-ink:#0b1124;
+  --border:rgba(179,151,226,.16);
+  --radius:20px;
+  --font-head:'Space Grotesk',system-ui,sans-serif;
+  --font-body:'Inter',system-ui,sans-serif;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--font-body);line-height:1.65;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--accent);color:var(--accent-ink)}
+
+/* ===== CIELO ESTRELLADO ===== */
+.starfield{
+  position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;
+  background:
+    radial-gradient(ellipse 90% 60% at 50% -10%, #1a2450 0%, transparent 62%),
+    radial-gradient(ellipse 70% 55% at 88% 108%, #1d1445 0%, transparent 60%),
+    #0b1124;
+}
+.stars{position:absolute;inset:0;background-repeat:repeat;will-change:opacity}
+
+.stars-sm{
+  background-image:
+    radial-gradient(1px 1px at 12px 34px, #ffffff, transparent),
+    radial-gradient(1px 1px at 58px 8px, #ffffff, transparent),
+    radial-gradient(1px 1px at 96px 122px, #ffffff, transparent),
+    radial-gradient(1px 1px at 140px 74px, #ffffff, transparent),
+    radial-gradient(1px 1px at 176px 160px, #ffffff, transparent),
+    radial-gradient(1px 1px at 205px 30px, #ffffff, transparent),
+    radial-gradient(1px 1px at 30px 190px, #ffffff, transparent),
+    radial-gradient(1px 1px at 118px 200px, #ffffff, transparent),
+    radial-gradient(1px 1px at 190px 118px, #ffffff, transparent),
+    radial-gradient(1px 1px at 72px 62px, #ffffff, transparent);
+  background-size:220px 220px;
+  opacity:.55;
+  animation:twinkle 5s ease-in-out infinite alternate;
+}
+
+.stars-md{
+  background-image:
+    radial-gradient(1.5px 1.5px at 40px 60px, #ffffff, transparent),
+    radial-gradient(1.5px 1.5px at 150px 20px, #ffffff, transparent),
+    radial-gradient(1.5px 1.5px at 260px 120px, #ffffff, transparent),
+    radial-gradient(1.5px 1.5px at 90px 200px, #ffffff, transparent),
+    radial-gradient(1.5px 1.5px at 310px 250px, #ffffff, transparent),
+    radial-gradient(1.5px 1.5px at 200px 300px, #ffffff, transparent),
+    radial-gradient(1.5px 1.5px at 130px 320px, #ffffff, transparent);
+  background-size:340px 340px;
+  opacity:.7;
+  animation:twinkle 7s ease-in-out infinite alternate;
+  animation-delay:-3s;
+}
+
+.stars-lg{
+  background-image:
+    radial-gradient(2px 2px at 80px 120px, #ffffff, rgba(255,255,255,.25) 45%, transparent 72%),
+    radial-gradient(2px 2px at 300px 60px, #ffffff, rgba(255,255,255,.25) 45%, transparent 72%),
+    radial-gradient(2px 2px at 420px 300px, #ffffff, rgba(255,255,255,.25) 45%, transparent 72%),
+    radial-gradient(2px 2px at 180px 400px, #ffffff, rgba(255,255,255,.25) 45%, transparent 72%),
+    radial-gradient(2px 2px at 480px 460px, #ffffff, rgba(255,255,255,.25) 45%, transparent 72%),
+    radial-gradient(2px 2px at 40px 380px, #ffffff, rgba(255,255,255,.25) 45%, transparent 72%);
+  background-size:520px 520px;
+  opacity:.9;
+  animation:twinkle 9s ease-in-out infinite alternate;
+  animation-delay:-5s;
+}
+
+@keyframes twinkle{
+  0%{opacity:.30}
+  50%{opacity:.95}
+  100%{opacity:.45}
+}
+
+.nebula{
+  position:absolute;border-radius:50%;filter:blur(90px);opacity:.55;
+  animation:drift 26s ease-in-out infinite alternate;
+}
+.nebula-a{
+  width:60vw;height:60vw;max-width:720px;max-height:720px;
+  background:radial-gradient(circle, rgba(150,95,255,.30), transparent 65%);
+  top:-18%;left:-12%;
+}
+.nebula-b{
+  width:52vw;height:52vw;max-width:620px;max-height:620px;
+  background:radial-gradient(circle, rgba(80,140,255,.22), transparent 65%);
+  bottom:-22%;right:-12%;
+  animation-delay:-12s;
+}
+@keyframes drift{
+  from{transform:translate3d(0,0,0) scale(1)}
+  to{transform:translate3d(40px,-30px,0) scale(1.12)}
+}
+
+.shooting-star{
+  position:absolute;top:12%;left:-15%;
+  width:160px;height:2px;border-radius:2px;
+  background:linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.95));
+  filter:drop-shadow(0 0 6px rgba(210,190,255,.9));
+  transform:rotate(18deg);opacity:0;
+  animation:shoot 11s linear infinite;
+}
+.shooting-star.s2{
+  top:48%;left:-20%;width:120px;height:1.5px;
+  animation-delay:6s;animation-duration:15s;opacity:0;
+}
+@keyframes shoot{
+  0%{transform:translate3d(0,0,0) rotate(18deg);opacity:0}
+  3%{opacity:1}
+  15%{transform:translate3d(115vw,38vh,0) rotate(18deg);opacity:0}
+  100%{transform:translate3d(115vw,38vh,0) rotate(18deg);opacity:0}
+}
+
+/* ===== UTILIDADES ===== */
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+.section{padding:120px 0;position:relative}
+h1,h2,h3{font-family:var(--font-head);line-height:1.08;letter-spacing:-.02em}
+.section-title{font-size:clamp(2rem,5vw,3.4rem);font-weight:700;margin:18px 0 20px}
+.muted{color:var(--muted)}
+.eyebrow{
+  font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--accent);font-weight:600;display:flex;align-items:center;gap:10px;
+}
+.eyebrow::before{content:"";width:28px;height:1px;background:var(--accent)}
+
+/* contenido por encima del cielo */
+.hero,.section,.marquee,footer{position:relative;z-index:1}
+
+/* Aparición al hacer scroll */
+.reveal{opacity:0;transform:translateY(28px);
+  transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+
+/* ===== NAVBAR ===== */
+.nav{
+  position:fixed;inset:0 0 auto 0;z-index:100;
+  transition:background .4s,border-color .4s,backdrop-filter .4s;
+  border-bottom:1px solid transparent;
+}
+.nav.scrolled{
+  background:rgba(11,17,36,.72);backdrop-filter:blur(16px);
+  border-bottom-color:var(--border);
+}
+.nav-inner{
+  max-width:1200px;margin:0 auto;padding:0 24px;
+  height:74px;display:flex;align-items:center;justify-content:space-between;
+}
+.logo{font-family:var(--font-head);font-weight:700;font-size:1.15rem;letter-spacing:-.02em}
+.logo span{color:var(--accent)}
+.nav-links{display:flex;gap:34px;align-items:center}
+.nav-links a{font-size:.92rem;font-weight:500;color:var(--muted);transition:color .25s;position:relative}
+.nav-links a:hover{color:var(--text)}
+.nav-links a::after{
+  content:"";position:absolute;left:0;bottom:-6px;height:1px;width:0;
+  background:var(--accent);transition:width .3s var(--ease);
+}
+.nav-links a:hover::after{width:100%}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:13px 24px;border-radius:100px;font-weight:600;font-size:.92rem;
+  border:1px solid transparent;cursor:pointer;transition:all .3s var(--ease);
+  font-family:var(--font-body);
+}
+.btn-primary{background:var(--accent);color:var(--accent-ink)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 30px -8px rgba(215,191,255,.55)}
+.btn-ghost{border-color:var(--border);color:var(--text);background:transparent}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+
+.burger{display:none;background:none;border:0;cursor:pointer;padding:8px;color:var(--text)}
+.burger span{display:block;width:24px;height:2px;background:currentColor;margin:5px 0;transition:.3s var(--ease)}
+.burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* ===== HERO ===== */
+.hero{min-height:100vh;display:flex;align-items:center;overflow:hidden;padding-top:74px}
+.hero-orb{
+  position:absolute;width:640px;height:640px;border-radius:50%;
+  background:radial-gradient(circle at 30% 30%,rgba(160,120,255,.26),transparent 62%);
+  filter:blur(70px);top:-160px;right:-140px;pointer-events:none;
+  animation:float 14s ease-in-out infinite;
+}
+.hero-orb.two{
+  background:radial-gradient(circle at 50% 50%,rgba(90,140,255,.20),transparent 62%);
+  width:520px;height:520px;bottom:-220px;left:-140px;top:auto;right:auto;
+  animation-delay:-7s;
+}
+@keyframes float{0%,100%{transform:translate(0,0)}50%{transform:translate(-30px,40px)}}
+
+/* Grid para dividir el Hero en dos columnas */
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 60px;
+  align-items: center;
+  width: 100%;
+}
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 60px; 
+}
+
+.hero h1{
+  font-size:clamp(2.5rem,5vw,4.8rem);font-weight:700;margin:0 0 26px;
+  max-width:14ch;
+}
+.hero h1 em{
+  font-style:normal;color:var(--accent);
+  position:relative;white-space:nowrap;
+}
+.hero .lead{font-size:clamp(1rem,2vw,1.15rem);color:var(--muted);max-width:50ch;margin-bottom:40px}
+.hero .lead strong{color:var(--text)}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+.hero-meta{
+  display:flex;gap:40px;margin-top:60px;flex-wrap:wrap;
+  padding-top:34px;border-top:1px solid var(--border);
+}
+.hero-meta div strong{display:block;font-family:var(--font-head);font-size:1.9rem;font-weight:700;color:var(--accent)}
+.hero-meta div span{font-size:.85rem;color:var(--muted)}
+
+/* Contenedor de la imagen de la derecha */
+.hero-image {
+  width: 100%;
+  aspect-ratio: 4/5;
+  border-radius: var(--radius);
+  overflow: hidden;
+  position: relative;
+  background: rgba(16, 24, 48, 0.6);
+  border: 1px solid var(--border);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 60px -15px rgba(179,151,226,0.3);
+  animation: float-img 6s ease-in-out infinite;
+}
+@keyframes float-img {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+.hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s var(--ease);
+}
+.hero-image:hover img {
+  transform: scale(1.05);
+}
+
+/* ===== MARQUEE ===== */
+.marquee{
+  border-block:1px solid var(--border);padding:22px 0;overflow:hidden;
+  background:rgba(13,20,42,.55);backdrop-filter:blur(6px);
+}
+.marquee-track{display:flex;width:max-content;animation:scroll 32s linear infinite}
+.marquee-track span{
+  font-family:var(--font-head);font-size:1.05rem;font-weight:600;
+  letter-spacing:.05em;text-transform:uppercase;padding-right:48px;
+  color:var(--muted);white-space:nowrap;
+}
+.marquee-track span b{color:var(--accent);font-weight:600}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+/* ===== FILTROS + GALERÍA ===== */
+.filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:52px}
+.filter{
+  padding:10px 20px;border-radius:100px;border:1px solid var(--border);
+  background:transparent;color:var(--muted);font-size:.88rem;font-weight:500;
+  cursor:pointer;transition:all .28s var(--ease);font-family:var(--font-body);
+}
+.filter:hover{border-color:rgba(215,191,255,.45);color:var(--text)}
+.filter.active{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:600}
+
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.card{
+  border-radius:var(--radius);overflow:hidden;
+  background:rgba(16,24,48,.72);
+  border:1px solid var(--border);cursor:pointer;
+  transition:transform .5s var(--ease),border-color .4s,box-shadow .5s;
+  animation:pop .5s var(--ease) both;
+}
+@keyframes pop{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:scale(1)}}
+.card:hover{
+  transform:translateY(-8px);
+  border-color:rgba(215,191,255,.45);
+  box-shadow:0 24px 50px -22px rgba(0,0,0,.9),0 0 40px -18px rgba(180,140,255,.5);
+}
+.card.is-hidden{display:none}
+
+.card-visual{
+  aspect-ratio:4/3;position:relative;overflow:hidden;
+  display:grid;place-items:center;
+  background:linear-gradient(140deg,var(--g1),var(--g2));
+}
+.card-visual::after{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(circle at 70% 20%,rgba(255,255,255,.22),transparent 55%);
+  mix-blend-mode:overlay;
+}
+.card-visual .art{position:absolute;inset:0;transition:transform .7s var(--ease)}
+.card:hover .card-visual .art{transform:scale(1.07)}
+
+.art-rings{background:repeating-radial-gradient(circle at 30% 40%,transparent 0 22px,rgba(0,0,0,.22) 22px 24px)}
+.art-stripes{background:repeating-linear-gradient(45deg,rgba(0,0,0,.2) 0 14px,transparent 14px 28px)}
+.art-dots{background-image:radial-gradient(rgba(0,0,0,.35) 2px,transparent 2px);background-size:20px 20px}
+.art-grid{background-image:linear-gradient(rgba(0,0,0,.2) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,.2) 1px,transparent 1px);background-size:34px 34px}
+.art-blob::before{
+  content:"";position:absolute;width:62%;aspect-ratio:1;border-radius:50%;
+  background:rgba(0,0,0,.28);filter:blur(2px);
+  top:16%;left:18%;
+}
+.art-type{
+  font-family:var(--font-head);font-size:clamp(4rem,11vw,7rem);font-weight:700;
+  color:rgba(0,0,0,.32);line-height:1;letter-spacing:-.05em;
+}
+
+.card-info{padding:22px 22px 26px}
+.card-info h3{font-size:1.14rem;font-weight:600;margin-bottom:6px}
+.card-info p{font-size:.84rem;color:var(--muted);display:flex;gap:8px;align-items:center}
+.card-info p i{width:4px;height:4px;border-radius:50%;background:var(--accent);display:inline-block}
+
+/* ===== NUEVO SOBRE MÍ (ESTILO VENTANA) ===== */
+.about-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 0;
+  min-height: 600px;
+}
+
+.main-window {
+  background: #151b2e;
+  border: 2px solid #0a0a0a;
+  border-radius: 14px;
+  box-shadow: 12px 12px 0 rgba(0,0,0,0.3), 0 0 40px -10px rgba(179,151,226,0.15);
+  width: 100%;
+  max-width: 800px;
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.window-header {
+  background: #0d1224;
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid #000;
+}
+
+.window-dots {
+  display: flex;
+  gap: 8px;
+  margin-right: 20px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+.dot.red { background: #ff5f56; }
+.dot.yellow { background: #ffbd2e; }
+.dot.green { background: #27c93f; }
+
+.window-title {
+  font-family: var(--font-head);
+  color: #8f80bd;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.main-window-content {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 40px;
+  padding: 40px;
+  color: #d1d1d1;
+}
+
+.about-image-wrapper {
+  background: #1d4ed8;
+  border-radius: 12px;
+  border: 2px solid #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  aspect-ratio: 1;
+  box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+}
+
+.about-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.about-text-content h2 {
+  color: #fff;
+  font-size: 2.2rem;
+  margin-bottom: 20px;
+  line-height: 1.1;
+}
+
+.about-text-content p {
+  font-size: 0.95rem;
+  margin-bottom: 16px;
+  color: #a6a5b8;
+  line-height: 1.6;
+}
+
+.about-text-content strong {
+  color: #fff;
+}
+
+.floating-window {
+  background: #151b2e;
+  border: 2px solid #000;
+  border-radius: 12px;
+  box-shadow: 8px 8px 0 rgba(0,0,0,0.3);
+  position: absolute;
+  width: 260px;
+  z-index: 3;
+  animation: float-window 6s ease-in-out infinite;
+}
+
+.window-left {
+  left: -20px;
+  top: 15%;
+  transform: rotate(-4deg);
+}
+
+.window-right {
+  right: -20px;
+  bottom: 15%;
+  transform: rotate(4deg);
+  animation-delay: -3s;
+}
+
+@keyframes float-window {
+  0%, 100% { transform: translateY(0) rotate(-4deg); }
+  50% { transform: translateY(-10px) rotate(-4deg); }
+}
+.window-right {
+  animation-name: float-window-right;
+}
+@keyframes float-window-right {
+  0%, 100% { transform: translateY(0) rotate(4deg); }
+  50% { transform: translateY(-10px) rotate(4deg); }
+}
+
+.floating-window .window-header {
+  padding: 10px 14px;
+}
+
+.floating-window .window-title {
+  font-size: 0.85rem;
+  color: #d1d1d1;
+}
+
+.hobby-list, .skills-list {
+  list-style: none;
+  padding: 20px;
+  margin: 0;
+}
+
+.hobby-list li, .skills-list li {
+  font-size: 0.85rem;
+  color: #a6a5b8;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hobby-list li:last-child, .skills-list li:last-child {
+  margin-bottom: 0;
+}
+
+/* ===== SERVICIOS ===== */
+.services{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.service{
+  padding:38px 30px;border-radius:var(--radius);
+  border:1px solid var(--border);background:rgba(16,24,48,.65);
+  transition:.45s var(--ease);position:relative;overflow:hidden;
+}
+.service::before{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(160deg,rgba(180,140,255,.14),transparent 55%);
+  opacity:0;transition:opacity .45s;
+}
+.service:hover{transform:translateY(-6px);border-color:rgba(215,191,255,.4)}
+.service:hover::before{opacity:1}
+.service-num{
+  font-family:var(--font-head);font-size:.8rem;color:var(--accent);
+  font-weight:600;letter-spacing:.15em;margin-bottom:26px;display:block;position:relative;
+}
+.service h3{font-size:1.35rem;font-weight:600;margin-bottom:14px;position:relative}
+.service p{color:var(--muted);font-size:.94rem;position:relative}
+.service ul{list-style:none;margin-top:22px;position:relative}
+.service li{
+  font-size:.88rem;color:var(--muted);padding-left:20px;position:relative;margin-bottom:8px;
+}
+.service li::before{
+  content:"";position:absolute;left:0;top:9px;width:8px;height:1px;background:var(--accent);
+}
+
+/* ===== CONTACTO ===== */
+.contact{text-align:center;overflow:hidden}
+.contact h2{font-size:clamp(2.2rem,6.5vw,4.6rem);font-weight:700;margin:22px 0 26px}
+.contact h2 em{font-style:normal;color:var(--accent)}
+.contact .lead{color:var(--muted);max-width:48ch;margin:0 auto 44px;font-size:1.08rem}
+.contact-links{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+/* ===== FOOTER ===== */
+footer{border-top:1px solid var(--border);padding:44px 0}
+.footer-inner{
+  display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;
+  font-size:.86rem;color:var(--muted);
+}
+.footer-social{display:flex;gap:22px}
+.footer-social a{transition:color .25s}
+.footer-social a:hover{color:var(--accent)}
+
+/* ===== MODAL DE PROYECTOS ===== */
+.modal-overlay {
+  position: fixed; inset: 0; background: rgba(11, 17, 36, 0.85);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  display: flex; justify-content: center; align-items: center;
+  z-index: 1000; opacity: 0; pointer-events: none;
+  transition: opacity 0.4s var(--ease);
+}
+.modal-overlay.active { opacity: 1; pointer-events: all; }
+
+.modal-box {
+  background: #151b2e; border: 2px solid #0a0a0a;
+  border-radius: 14px; width: 90%; max-width: 800px;
+  max-height: 90vh; overflow-y: auto; position: relative;
+  box-shadow: 15px 15px 0 rgba(0,0,0,0.4), 0 0 50px -10px rgba(179,151,226,0.3);
+  transform: translateY(30px) scale(0.95); 
+  transition: transform 0.4s var(--ease);
+}
+.modal-overlay.active .modal-box { transform: translateY(0) scale(1); }
+
+.modal-header {
+  background: #0d1224; padding: 12px 18px; display: flex;
+  align-items: center; justify-content: space-between;
+  border-bottom: 2px solid #000; position: sticky; top: 0; z-index: 10;
+}
+.modal-header-left { display: flex; align-items: center; gap: 20px; }
+.modal-close {
+  background: none; border: none; color: #ff5f56;
+  font-size: 1.5rem; cursor: pointer; line-height: 1;
+  transition: transform 0.2s;
+}
+.modal-close:hover { transform: scale(1.2); }
+
+.modal-body { padding: 0 0 40px 0; }
+.modal-img-container {
+  width: 100%; aspect-ratio: 16/9; overflow: hidden;
+  background: #1d4ed8; border-bottom: 2px solid #000;
+}
+.modal-img-container img { width: 100%; height: 100%; object-fit: cover; }
+
+.modal-text-content { padding: 40px; color: #d1d1d1; }
+.modal-text-content h2 { color: #fff; font-size: 2.2rem; margin-bottom: 10px; }
+.modal-category {
+  display: inline-block; font-size: 0.85rem; color: var(--accent);
+  border: 1px solid var(--accent); padding: 4px 12px;
+  border-radius: 100px; margin-bottom: 20px;
+}
+.modal-text-content p { color: #a6a5b8; font-size: 1rem; line-height: 1.7; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width:1100px){
+  .about-container{
+    flex-direction: column;
+    padding: 40px 0;
+    gap: 30px;
+  }
+  
+  .floating-window{
+    position: relative;
+    left: auto;
+    right: auto;
+    top: auto;
+    bottom: auto;
+    transform: none;
+    animation: none;
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .window-left { order: 2; }
+  .main-window { order: 1; }
+  .window-right { order: 3; }
+}
+
+@media (max-width:960px){
+  .hero-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 50px;
+  }
+  .hero-content {
+    align-items: center;
+    padding-top: 0; 
+  }
+  .hero .lead {
+    margin: 0 auto 40px;
+  }
+  .hero-cta, .hero-meta {
+    justify-content: center;
+  }
+  .hero-image {
+    max-width: 400px;
+    margin: 0 auto;
+    aspect-ratio: 1/1; 
+  }
+  .grid,.services{grid-template-columns:repeat(2,1fr)}
+}
+
+@media (max-width:720px){
+  .section{padding:86px 0}
+  .nav-links{
+    position:fixed;inset:74px 0 auto 0;flex-direction:column;
+    background:rgba(11,17,36,.97);backdrop-filter:blur(18px);
+    padding:34px 24px;gap:26px;border-bottom:1px solid var(--border);
+    transform:translateY(-120%);transition:transform .45s var(--ease);
+  }
+  .nav-links.open{transform:none}
+  .nav-links a{font-size:1.05rem}
+  .nav .btn{display:none}
+  .burger{display:block}
+  .grid,.services{grid-template-columns:1fr}
+  .hero-meta{gap:28px;margin-top:40px}
+  .hero-meta div strong{font-size:1.5rem}
+  
+  .main-window-content{
+    grid-template-columns: 1fr;
+    padding: 25px;
+    gap: 25px;
+    text-align: center;
+  }
+  
+  .about-image-wrapper{
+    max-width: 250px;
+    margin: 0 auto;
+  }
+
+  .modal-text-content { padding: 25px; }
+  .modal-text-content h2 { font-size: 1.8rem; }
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ CIELO ESTRELLADO ============ -->
+<div class="starfield" aria-hidden="true">
+  <div class="stars stars-sm"></div>
+  <div class="stars stars-md"></div>
+  <div class="stars stars-lg"></div>
+  <div class="nebula nebula-a"></div>
+  <div class="nebula nebula-b"></div>
+  <div class="shooting-star"></div>
+  <div class="shooting-star s2"></div>
+</div>
+
+<!-- ============ NAVBAR ============ -->
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#top" class="logo">tu<span>nombre</span>.</a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#proyectos">Proyectos</a>
+      <a href="#sobre-mi">Sobre mí</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <a href="#contacto" class="btn btn-primary">Hablemos</a>
+    <button class="burger" id="burger" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="hero-orb"></div>
+  <div class="hero-orb two"></div>
+  <div class="container hero-grid">
+    
+    <!-- Columna Izquierda: Textos -->
+    <div class="hero-content">
+      <h1 class="reveal">The <br>Gen <em>Studio</em>.</h1>
+      <p class="lead reveal">
+        Diseño que se ve <strong>se siente</strong> y funciona.
+      </p>
+      <div class="hero-cta reveal">
+        <a href="#proyectos" class="btn btn-primary">Ver proyectos →</a>
+        <a href="#contacto" class="btn btn-ghost">Trabajemos juntos</a>
+      </div>
+    </div>
+
+    <!-- Columna Derecha: Espacio para tu imagen -->
+    <div class="hero-image reveal">
+      <!-- AQUÍ VA TU IMAGEN: Cambia el "src" por el enlace o ruta de tu foto -->
+      <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop" alt="Retrato de Tu Nombre">
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ MARQUEE ============ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Diseño Gráfico <b>✦</b> Ilustración <b>✦</b> Diseño Web <b>✦</b> Branding <b>✦</b> Identidad Visual <b>✦</b> UI/UX <b>✦</b> Editorial <b>✦</b></span>
+    <span>Diseño Gráfico <b>✦</b> Ilustración <b>✦</b> Diseño Web <b>✦</b> Branding <b>✦</b> Identidad Visual <b>✦</b> UI/UX <b>✦</b> Editorial <b>✦</b></span>
+  </div>
+</div>
+
+<!-- ============ PROYECTOS ============ -->
+<section class="section" id="proyectos">
+  <div class="container">
+    <p class="eyebrow reveal">Trabajos seleccionados</p>
+    <h2 class="section-title reveal">Proyectos</h2>
+
+    <div class="filters reveal">
+      <button class="filter active" data-filter="all">Todos</button>
+      <button class="filter" data-filter="grafico">Diseño Gráfico</button>
+      <button class="filter" data-filter="ilustracion">Ilustración</button>
+      <button class="filter" data-filter="web">Diseño Web</button>
+    </div>
+
+    <div class="grid" id="grid">
+
+      <!-- PROYECTO 1 -->
+      <article class="card reveal" data-cat="grafico" 
+               data-titulo="Identidad Visual" 
+               data-categoria="Diseño Gráfico" 
+               data-descripcion="Creación de una identidad visual completa para una marca moderna. Se desarrolló el logotipo, la paleta de colores, tipografía y aplicaciones de marca, buscando transmitir confianza y vanguardia."
+               data-img="https://images.unsplash.com/photo-1600132806370-bf17e65e942f?q=80&w=1000&auto=format&fit=crop">
+        <div class="card-visual" style="--g1:#6d4aff;--g2:#ff4d8d">
+          <div class="art art-rings"></div>
+        </div>
+        <div class="card-info">
+          <h3>Identidad Visual</h3>
+          <p>Diseño Gráfico <i></i> 2026</p>
+        </div>
+      </article>
+
+      <!-- PROYECTO 2 -->
+      <article class="card reveal" data-cat="ilustracion"
+               data-titulo="Ilustrada" 
+               data-categoria="Ilustración" 
+               data-descripcion="Serie de ilustraciones digitales creadas para un proyecto editorial. El enfoque fue desarrollar personajes carismáticos con una paleta de colores vibrante y formas orgánicas."
+               data-img="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000&auto=format&fit=crop">
+        <div class="card-visual" style="--g1:#d8ff3e;--g2:#2ec4a0">
+          <div class="art art-type">Aa</div>
+        </div>
+        <div class="card-info">
+          <h3>Ilustrada</h3>
+          <p>Ilustración <i></i> 2026</p>
+        </div>
+      </article>
+
+      <!-- PROYECTO 3 -->
+      <article class="card reveal" data-cat="grafico"
+               data-titulo="Branding" 
+               data-categoria="Diseño Gráfico" 
+               data-descripcion="Desarrollo de estrategia de marca y diseño de empaques para una línea de productos. Se utilizaron patrones geométricos y colores cálidos para destacar en el punto de venta."
+               data-img="https://images.unsplash.com/photo-1558655146-9f40138edfeb?q=80&w=1000&auto=format&fit=crop">
+        <div class="card-visual" style="--g1:#ff6a00;--g2:#ffb03a">
+          <div class="art art-stripes"></div>
+        </div>
+        <div class="card-info">
+          <h3>Branding</h3>
+          <p>Diseño Gráfico <i></i> 2026</p>
+        </div>
+      </article>
+
+      <!-- PROYECTO 5 -->
+      <article class="card reveal" data-cat="ilustracion"
+               data-titulo="Editorial" 
+               data-categoria="Ilustración" 
+               data-descripcion="Diseño e ilustración de portada y páginas interiores para una revista independiente. El reto fue mantener la legibilidad mientras se integraban elementos gráficos experimentales."
+               data-img="https://images.unsplash.com/photo-1544377193-33dcf4d68fb5?q=80&w=1000&auto=format&fit=crop">
+        <div class="card-visual" style="--g1:#b03aff;--g2:#ff5ec4">
+          <div class="art art-blob"></div>
+        </div>
+        <div class="card-info">
+          <h3>Editorial</h3>
+          <p>Ilustración <i></i> 2026</p>
+        </div>
+      </article>
+
+      <!-- PROYECTO 6 -->
+      <article class="card reveal" data-cat="web"
+               data-titulo="Ruta — App Web" 
+               data-categoria="Diseño Web" 
+               data-descripcion="Diseño UI/UX y maquetación front-end para una aplicación web de gestión de viajes. Se priorizó una interfaz limpia, accesible y con una navegación intuitiva para el usuario."
+               data-img="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop">
+        <div class="card-visual" style="--g1:#0f3f3f;--g2:#25d0a5">
+          <div class="art art-dots"></div>
+        </div>
+        <div class="card-info">
+          <h3>Ruta — App Web</h3>
+          <p>Diseño Web <i></i> 2026</p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ SOBRE MÍ (NUEVO DISEÑO) ============ -->
+<section class="section" id="sobre-mi">
+  <div class="container about-container">
+    
+    <!-- Ventana Flotante Izquierda: Mis gustos -->
+    <div class="floating-window window-left reveal">
+      <div class="window-header">
+        <div class="window-dots">
+          <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+        </div>
+        <span class="window-title">Mis gustos</span>
+      </div>
+      <ul class="hobby-list">
+        <li>Dibujo</li>
+        <li>Fotografia</li>
+        <li>Videojuegos</li>
+        <li>Tecnología</li>
+        <li>Cine y series</li>
+      </ul>
+    </div>
+
+    <!-- Ventana Principal: Sobre mí -->
+    <div class="main-window reveal">
+      <div class="window-header">
+        <div class="window-dots">
+          <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+        </div>
+        <span class="window-title">Sobre mí</span>
+      </div>
+      
+      <div class="main-window-content">
+        <!-- Lado Izquierdo: Tu foto/avatar -->
+        <div class="about-image-wrapper">
+          <!-- AQUÍ PUEDES PONER TU FOTO O ILUSTRACIÓN. Cambia el src -->
+          <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000&auto=format&fit=crop" alt="Avatar de Génesis">
+        </div>
+        
+        <!-- Lado Derecho: Tu texto -->
+        <div class="about-text-content">
+          <h2>Hola, <strong>soy Génesis.</strong></h2>
+          <p>
+            Me apasiona crear y experimentar con distintas formas de comunicación visual y digital. Mi trabajo nace de la curiosidad, la creatividad y las ganas de transformar ideas en algo que pueda verse, sentirse y conectar. Me obsesionan la composición, los pequeños detalles y esas decisiones que quizá nadie nota conscientemente, pero que hacen que una pieza se sienta diferente.
+         </p>
+          <p>
+         Creo en el diseño como una herramienta estratégica: <strong>bonito, sí, pero sobre todo con intención.</strong> Cada color, forma, tipografía e imagen tiene un propósito; cada proyecto es una oportunidad para encontrar la manera más auténtica de contar una historia.  
+        </p>
+          <p>
+            <strong>The Gen Studio</strong> es el espacio donde exploro, creo y convierto ideas en experiencias visuales útiles.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ventana Flotante Derecha: Skills -->
+    <div class="floating-window window-right reveal">
+      <div class="window-header">
+        <div class="window-dots">
+          <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+        </div>
+        <span class="window-title">Skills</span>
+      </div>
+      <ul class="skills-list">
+        <li>🏆 Trabajo en equipo</li>
+        <li>💬 Comunicación</li>
+        <li>🧩 Resolución de problemas</li>
+        <li>📅 Organización</li>
+        <li>⏱️ Gestión del tiempo</li>
+        <li>📚 Aprendizaje continuo</li>
+        <li>💡 Creatividad</li>
+        <li>🔄 Adaptabilidad</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ SERVICIOS ============ -->
+<section class="section" id="servicios">
+  <div class="container">
+    <p class="eyebrow reveal">Qué hago</p>
+    <h2 class="section-title reveal">Servicios</h2>
+
+    <div class="services">
+      <div class="service reveal">
+        <span class="service-num">01</span>
+        <h3>Diseño Gráfico</h3>
+        <p>Identidades visuales que se reconocen a la primera y funcionan en cualquier soporte.</p>
+        <ul>
+          <li>Logotipos e identidad</li>
+          <li>Manual de marca</li>
+          <li>Packaging</li>
+          <li>Editorial e impresión</li>
+        </ul>
+      </div>
+
+      <div class="service reveal">
+        <span class="service-num">02</span>
+        <h3>Ilustración</h3>
+        <p>Imágenes con voz propia: desde personajes hasta universos visuales completos.</p>
+        <ul>
+          <li>Ilustración digital</li>
+          <li>Personajes y mascotas</li>
+          <li>Editorial y libros</li>
+        </ul>
+      </div>
+
+      <div class="service reveal">
+        <span class="service-num">03</span>
+        <h3>Diseño Web</h3>
+        <p>Sitios rápidos, accesibles y con una interfaz que guía al usuario sin fricción.</p>
+        <ul>
+          <li>Landing pages</li>
+          <li>Prototipos en Figma</li>
+          <li>Maquetación front-end</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACTO ============ -->
+<section class="section contact" id="contacto">
+  <div class="container">
+    <p class="eyebrow reveal" style="justify-content:center">¿Empezamos?</p>
+    <h2 class="reveal">¿Tienes una idea?<br>Vamos a <em>darle forma</em>.</h2>
+    <p class="lead reveal">
+      Cuéntame sobre tu proyecto y te respondo en menos de 24 horas.
+      Sin compromiso, sin letra pequeña.
+    </p>
+    <div class="contact-links reveal">
+      <a href="mailto:hola@tunombre.com" class="btn btn-primary">hola@tunombre.com</a>
+      <a href="#" class="btn btn-ghost">WhatsApp</a>
+      <a href="#" class="btn btn-ghost">Instagram</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container footer-inner">
+    <p>© 2025 Tu Nombre. Diseñado y desarrollado con mucho café.</p>
+    <div class="footer-social">
+      <a href="#">Instagram</a>
+      <a href="#">Behance</a>
+      <a href="#">Dribbble</a>
+      <a href="#">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ MODAL DE PROYECTOS (OCULTO POR DEFECTO) ============ -->
+<div class="modal-overlay" id="projectModal">
+  <div class="modal-box">
+    <!-- Cabecera del modal con botones estilo ventana -->
+    <div class="modal-header">
+      <div class="modal-header-left">
+        <div class="window-dots">
+          <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+        </div>
+        <span class="window-title" id="modalHeaderTitle">Proyecto</span>
+      </div>
+      <button class="modal-close" id="modalClose" aria-label="Cerrar modal">✕</button>
+    </div>
+    
+    <!-- Contenido del modal -->
+    <div class="modal-body">
+      <div class="modal-img-container">
+        <img src="" alt="Imagen del proyecto" id="modalImg">
+      </div>
+      <div class="modal-text-content">
+        <span class="modal-category" id="modalCategory">Categoría</span>
+        <h2 id="modalTitle">Título del Proyecto</h2>
+        <p id="modalDescription">Descripción del proyecto aquí...</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ===== NAVBAR: fondo al hacer scroll ===== */
+const nav = document.getElementById('nav');
+const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 20);
+window.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+
+/* ===== MENÚ MÓVIL ===== */
+const burger = document.getElementById('burger');
+const navLinks = document.getElementById('navLinks');
+burger.addEventListener('click', () => {
+  burger.classList.toggle('open');
+  navLinks.classList.toggle('open');
+});
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  burger.classList.remove('open');
+  navLinks.classList.remove('open');
+}));
+
+/* ===== FILTRO DE PROYECTOS ===== */
+const filters = document.querySelectorAll('.filter');
+const cards = document.querySelectorAll('.card');
+
+filters.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filters.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    const cat = btn.dataset.filter;
+    let index = 0;
+
+    cards.forEach(card => {
+      const show = cat === 'all' || card.dataset.cat === cat;
+      card.classList.toggle('is-hidden', !show);
+      if (show) {
+        card.style.animation = 'none';
+        void card.offsetWidth;
+        card.style.animation = `pop .5s var(--ease) both`;
+        card.style.animationDelay = `${index * 0.06}s`;
+        index++;
+      }
+    });
+  });
+});
+
+/* ===== LÓGICA DEL MODAL DE PROYECTOS ===== */
+const modal = document.getElementById('projectModal');
+const modalClose = document.getElementById('modalClose');
+const modalImg = document.getElementById('modalImg');
+const modalTitle = document.getElementById('modalTitle');
+const modalCategory = document.getElementById('modalCategory');
+const modalDescription = document.getElementById('modalDescription');
+const modalHeaderTitle = document.getElementById('modalHeaderTitle');
+
+// Abrir Modal
+cards.forEach(card => {
+  card.addEventListener('click', () => {
+    // Obtener los datos del HTML (los atributos data-*)
+    const title = card.dataset.titulo;
+    const category = card.dataset.categoria;
+    const description = card.dataset.descripcion;
+    const imgSrc = card.dataset.img;
+
+    // Llenar el modal con la información
+    modalTitle.textContent = title;
+    modalHeaderTitle.textContent = title;
+    modalCategory.textContent = category;
+    modalDescription.textContent = description;
+    modalImg.src = imgSrc;
+
+    // Mostrar el modal
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden'; // Bloquear el scroll de fondo
+  });
+});
+
+// Cerrar Modal al hacer clic en la "X"
+modalClose.addEventListener('click', () => {
+  modal.classList.remove('active');
+  document.body.style.overflow = ''; // Restaurar scroll
+});
+
+// Cerrar Modal al hacer clic fuera del contenido (en el fondo oscuro)
+modal.addEventListener('click', (e) => {
+  if (e.target === modal) {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+});
+
+// Cerrar Modal con la tecla Escape
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && modal.classList.contains('active')) {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+});
+
+/* ===== ANIMACIÓN DE APARICIÓN AL SCROLL ===== */
+const io = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('in'), i * 70);
+      io.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
